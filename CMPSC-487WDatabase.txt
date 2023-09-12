@@ -1,0 +1,28 @@
+//This is the database queue that sets up the two established tables and populates the user table with 
+//existing values.
+
+
+
+create Table UserAccess(
+userID int not null,
+Username varchar (20) not null,
+UserStatus varchar(15),
+UserType varchar(10), 
+ primary key (userID)
+ );
+ 
+ create Table Access(
+ userID int not null,
+ Username varchar (20) not null,
+ accesstime Datetime,
+ access varchar(20),
+ primary key (userID,access),
+ foreign key (userID) references UserAccess
+);
+
+insert into UserAccess 
+	values ( 1,'Greg' , 'Active', 'Admin'),
+	(2, 'Marcus', 'Active','Student'),
+	(3, 'Jade', 'Suspended','Student'),
+	(4, 'Martin', 'Active','Student'),
+	(5, 'George', 'Suspended','Student');
