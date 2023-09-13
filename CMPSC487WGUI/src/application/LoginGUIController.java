@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,6 +34,29 @@ public class LoginGUIController {
 	@FXML
 	private TextField IDnum;
 	
+	
+	
+	
+ public class DatabaseConnection {
+
+	    // Method to establish connection to the database
+	    public static Connection getConnection() throws SQLException {
+	        
+				String password = "Ypeztyx1";
+				String server = "JEFFLAPTOP\SQLSERVERTET";
+				String database = "master";
+				String username = "DoctorFixit";
+				String connection = "jdbc:sqlserver://" + server + ":1433;"
+				        + "databaseName=" + database + ";"
+				        + "user=" + username + ";"
+				        + "password=" + password + ";";
+		
+				
+	        return DriverManager.getConnection(connection);
+	        
+	    }
+	}
+	
 	@FXML
 	public void AdminPopup() throws IOException{
 		try {
@@ -50,26 +75,27 @@ public class LoginGUIController {
 	@FXML
 	@SuppressWarnings("null")
 	public void SigninAction(ActionEvent event) {
-		int ID = Integer.parseInt("IDnum");
+
+		int ID = Integer.parseInt(IDnum.getText());
 		 try {
 			 	Statement stmt = null;
 			 	Admin.setIndeterminate(false);
 			 if (Admin.isIndeterminate() && !Admin.isSelected()) { //Student login
-		        ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = " + ID + " and UserStatus = 'Active' and UserType ='Student'");
+		        ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = '" + ID + "' and UserStatus = 'Active' and UserType ='Student'");
 		        if(rs.next()) {
-		        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN'");
+		        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN')");
 		          Access.setText("Access Granted");
 		        } else {
 		            Access.setText("Access Denied");
 		        }
 			 } else if(Admin.isIndeterminate() && Admin.isSelected()) { // Admin login
-				 ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = " + ID + " and UserStatus = 'Active' and UserType = 'Admin'");
+				 ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = '" + ID + "' and UserStatus = 'Active' and UserType = 'Admin'");
 			        if(rs.next()) {
-			        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN'");
+			        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN')");
 			        	try {
 							AdminPopup();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 			        } else {
@@ -85,22 +111,23 @@ public class LoginGUIController {
 	@SuppressWarnings("null")
 	@FXML
 	public void SignoutAction(ActionEvent event) {
-		int ID = Integer.parseInt("IDnum");
+		int ID = Integer.parseInt(IDnum.getText());
 		 try {
+			 
 			 	Statement stmt = null;
 			 	Admin.setIndeterminate(false);
 			 if (Admin.isIndeterminate() && !Admin.isSelected()) { //Student login
 		        ResultSet rs = stmt.executeQuery("SELECT * FROM Access WHERE userID = '" + ID + "'");
 		        if(rs.next()) {
-		        	stmt.executeQuery("Insert into Access value( " + ID +", Username, Currenttime() , 'Out'");
+		        	stmt.executeQuery("Insert into Access value( " + ID +", Username, Currenttime() , 'Out')");
 		          Access.setText("Swipe Successful");
 		        } else {
 		            Access.setText("Swipe Failure");
 		        }
 			 } else if(Admin.isIndeterminate() && Admin.isSelected()) { // Admin login
-				 ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = '" + ID + "'");
+				 ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = '" + IDnum + "'");
 			        if(rs.next()) {
-			        	stmt.executeQuery("Insert into Access value( " + ID +", Username, Currenttime() , 'Out'");
+			        	stmt.executeQuery("Insert into Access value( " + ID +", Username, Currenttime() , 'Out')");
 			        	Access.setText("Swipe Successful");
 			        	
 			        } else {
@@ -113,6 +140,6 @@ public class LoginGUIController {
 		    }
 }
 	
-	
+
 	
 }

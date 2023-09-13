@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +31,27 @@ public class AddorDeleteGUIController {
 	private Button DeleteButton;
 	@FXML
 	private Label UserStatus;
+	
+	
+	
+	public class DatabaseConnection {
+
+	    // Method to establish connection to the database
+	    public static Connection getConnection() throws SQLException {
+	        
+	    	String password = "Ypeztyx1";
+			String server = "JEFFLAPTOP\\SQLSERVERTET";
+			String database = "master";
+			String username = "DoctorFixit";
+				String connection = "jdbc:sqlserver://" + server + ":1433;"
+				        + "databaseName=" + database + ";"
+				        + "user=" + username + ";"
+				        + "password=" + password + ";";
+				
+	        return DriverManager.getConnection(connection);
+	        
+	    }
+	}
 
 	// Event Listener on Button[#AddButton].onAction
 	@SuppressWarnings("null")
@@ -43,7 +66,7 @@ public class AddorDeleteGUIController {
 		        if(rs.next()) {
 		        	UserStatus.setText("User Not Valid or Already Exists");
 		        } else {
-		          stmt.executeQuery("Insert into UserAccess value( " + ID +"," + UserName +", 'Active', 'Student'");
+		          stmt.executeQuery("Insert into UserAccess value( " + ID +"," + UserName +", 'Active', 'Student')");
 		          UserStatus.setText("User Added");
 		        }
 			 } else if(Admin.isIndeterminate() && Admin.isSelected()) { // Admin Adding
@@ -52,7 +75,7 @@ public class AddorDeleteGUIController {
 			        	UserStatus.setText("User Not Valid or Already Exists");
 						}
 			        } else {
-			        	 stmt.executeQuery("Insert into UserAccess value( " + ID +"," + UserName +", 'Active', 'Admin'");
+			        	 stmt.executeQuery("Insert into UserAccess value( " + ID +"," + UserName +", 'Active', 'Admin')");
 				          UserStatus.setText("User Added");
 			        }
 				 

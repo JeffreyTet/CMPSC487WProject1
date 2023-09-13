@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +29,27 @@ public class FilterGUIController {
 	@FXML
 	private Button FilterButton;
 
+	
+	public class DatabaseConnection {
+
+	    // Method to establish connection to the database
+	    public static Connection getConnection() throws SQLException {
+	        
+	    	String password = "Ypeztyx1";
+			String server = "JEFFLAPTOP\\SQLSERVERTET";
+			String database = "master";
+			String username = "DoctorFixit";
+				String connection = "jdbc:sqlserver://" + server + ":1433;"
+				        + "databaseName=" + database + ";"
+				        + "user=" + username + ";"
+				        + "password=" + password + ";";
+				
+	        return DriverManager.getConnection(connection);
+	        
+	    }
+	}
+	
+	
 	// Event Listener on Button[#FilterButton].onAction
 	@SuppressWarnings("null")
 	@FXML
