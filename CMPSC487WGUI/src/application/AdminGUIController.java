@@ -48,13 +48,13 @@ public class AdminGUIController {
 	@FXML
 	private TableView<Access> AccessTable = new TableView<>();
 	@FXML
-	private TableColumn AccessIDCol;
+	private TableColumn<Access,Integer> AccessIDCol;
 	@FXML
-	private TableColumn AccessNameCol;
+	private TableColumn<Access,String> AccessNameCol;
 	@FXML
-	private TableColumn DateTimeCol;
+	private TableColumn<Access,Integer> DateTimeCol;
 	@FXML
-	private TableColumn AccessStatusCol;
+	private TableColumn<Access,String> AccessStatusCol;
 	
 	
 
