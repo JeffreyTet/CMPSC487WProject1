@@ -57,7 +57,7 @@ public class AddorDeleteGUIController {
 	@SuppressWarnings("null")
 	@FXML
 	public void AddUser(ActionEvent event) {
-		int ID = Integer.parseInt("IDnum");
+		int ID = Integer.parseInt(IDnum.getText());
 		 try {
 			 	Statement stmt = null;
 			 	Admin.setIndeterminate(false);
@@ -87,7 +87,7 @@ public class AddorDeleteGUIController {
 	@SuppressWarnings("null")
 	@FXML
 	public void DeleteUser(ActionEvent event) {
-		int ID = Integer.parseInt("IDnum");
+		int ID = Integer.parseInt(IDnum.getText());
 		 try {
 			 	Statement stmt = null;
 			 	Admin.setIndeterminate(false);

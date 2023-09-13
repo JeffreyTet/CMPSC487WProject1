@@ -83,7 +83,7 @@ public class LoginGUIController {
 			 if (Admin.isIndeterminate() && !Admin.isSelected()) { //Student login
 		        ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = '" + ID + "' and UserStatus = 'Active' and UserType ='Student'");
 		        if(rs.next()) {
-		        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN')");
+		        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN') from UserAccess");
 		          Access.setText("Access Granted");
 		        } else {
 		            Access.setText("Access Denied");
@@ -91,7 +91,7 @@ public class LoginGUIController {
 			 } else if(Admin.isIndeterminate() && Admin.isSelected()) { // Admin login
 				 ResultSet rs = stmt.executeQuery("SELECT * FROM UserAccess WHERE userID = '" + ID + "' and UserStatus = 'Active' and UserType = 'Admin'");
 			        if(rs.next()) {
-			        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN')");
+			        	stmt.executeQuery("Insert into Access value( " + ID +", Username.UserAccess, Currenttime() , 'IN') from UserAccess");
 			        	try {
 							AdminPopup();
 						} catch (IOException e) {

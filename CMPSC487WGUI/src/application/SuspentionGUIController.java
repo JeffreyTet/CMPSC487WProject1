@@ -49,7 +49,7 @@ public class SuspentionGUIController {
 	@SuppressWarnings("null")
 	@FXML
 	public void Activation(ActionEvent event) {
-		int ID = Integer.parseInt("IDnum");
+		int ID = Integer.parseInt(IDnum.getText());
 		 try {
 			 	Statement stmt = null;
 			
@@ -69,7 +69,7 @@ public class SuspentionGUIController {
 	@SuppressWarnings("null")
 	@FXML
 	public void Suspention(ActionEvent event) {
-		int ID = Integer.parseInt("IDnum");
+		int ID = Integer.parseInt(IDnum.getText());
 		 try {
 			 	Statement stmt = null;
 			

@@ -57,8 +57,8 @@ public class FilterGUIController {
 		
 		Statement stmt = null;
 		
-		if(DateStart== null && DateEnd== null && TimeStart == null && TimeEnd == null) { // Filter by ID
-			int ID = Integer.parseInt("IDnum");
+		if(DateStart.getText()== null && DateEnd.getText()== null && TimeStart.getText() == null && TimeEnd.getText() == null) { // Filter by ID
+			int ID = Integer.parseInt(IDnum.getText());
 		 try {
 		        ResultSet rs = stmt.executeQuery("SELECT * FROM Access WHERE userID = '" + ID + "'");
 		        if(rs.next()) {
@@ -69,10 +69,10 @@ public class FilterGUIController {
 			 } catch(SQLException sqle) {
 				 System.out.println("Could not find Value " + sqle);
 		    }
-		} else if(IDnum == null && TimeStart == null && TimeEnd == null) { // Filter by Date
+		} else if(IDnum.getText() == null && TimeStart.getText() == null && TimeEnd.getText() == null) { // Filter by Date
 			ResultSet rs;
 			try {
-				rs = stmt.executeQuery("SELECT * FROM Access WHERE DateTime >= '"+DateStart+"T00:00:00.00' and DateTime <= '"+DateEnd+"T24:00:00.00'");
+				rs = stmt.executeQuery("SELECT * FROM Access WHERE DateTime >= '"+DateStart.getText()+"T00:00:00.00' and DateTime <= '"+DateEnd.getText()+"T24:00:00.00'");
 			   if(rs.next()) {
 			        
 			   }
@@ -81,10 +81,10 @@ public class FilterGUIController {
 			}
 			     
 		
-	} else if(IDnum == null && DateEnd== null) {// Filter by Time on a specific day
+	} else if(IDnum.getText() == null && DateEnd.getText()== null) {// Filter by Time on a specific day
 		ResultSet rs;
 		try {
-			rs = stmt.executeQuery("SELECT * FROM Access WHERE DateTime >= '"+DateStart+"T"+TimeStart+"' and DateTime <= '"+DateStart+"T"+TimeEnd+"'");
+			rs = stmt.executeQuery("SELECT * FROM Access WHERE DateTime >= '"+DateStart.getText()+"T"+TimeStart.getText()+"' and DateTime <= '"+DateStart.getText()+"T"+TimeEnd.getText()+"'");
 		   if(rs.next()) {
 		        
 		   }
