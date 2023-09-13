@@ -18,10 +18,10 @@ public class Main extends Application {
 	    // Method to establish connection to the database
 	    public static Connection getConnection() throws SQLException {
 	        
-				String password = "BlueT1215";
-				String server = "JEFFLAPTOP\\SQLSERVERTET";
-				String database = "master";
-				String username = "JEFFLAPTOP\\Jeff";
+	    	String password = "Ypeztyx1";
+			String server = "JEFFLAPTOP\SQLSERVERTET";
+			String database = "master";
+			String username = "DoctorFixit";
 				String connection = "jdbc:sqlserver://" + server + ":1433;"
 				        + "databaseName=" + database + ";"
 				        + "user=" + username + ";"
@@ -37,8 +37,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			//FXMLLoader loader = new FXMLLoader();
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/LoginGUI.fxml"));
-			Scene scene = new Scene(root,400,400);
+			//loader.setLocation(LoginGUIController.class.getResource("/application/LoginGUI.fxml"));
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
