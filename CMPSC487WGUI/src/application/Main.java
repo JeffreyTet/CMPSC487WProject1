@@ -38,7 +38,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			//FXMLLoader loader = new FXMLLoader();
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/AdminGUI.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("/application/LoginGUI.fxml"));
 			//loader.setLocation(LoginGUIController.class.getResource("/application/LoginGUI.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
